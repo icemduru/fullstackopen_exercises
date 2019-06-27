@@ -1,0 +1,15 @@
+title 0.6: New note spa
+
+browser->server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
+note over server:
+server create the a json according to new input from user
+and send back to user
+end note
+
+server-->browser: {content: "test", date: "2019-06-27T14:53:11.716Z"}
+
+note over browser:
+browser executes the event handler
+that renders new json to creates a new note
+end note
