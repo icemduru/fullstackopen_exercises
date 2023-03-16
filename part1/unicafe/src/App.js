@@ -16,17 +16,26 @@ const Title = (props) =>{
     </div>
 )}
 
+const StatisticLine = (props) =>{
+  console.log(props)
+  return(
+    <div>
+      <p>{props.text} {props.number}</p>
+    </div>
+  )
+}
+
 const Stats = (props) =>{
   console.log(props)
   if (props.number1 > 0 || props.number2 > 0 || props.number3 > 0) {
     return(
       <div>
-        <p>{props.text1} {props.number1}</p>
-        <p>{props.text2} {props.number2}</p>
-        <p>{props.text3} {props.number3}</p>
-        <p>{props.text4} {props.number4}</p>
-        <p>{props.text5} {props.number5}</p>
-        <p>{props.text6} {props.number6}</p>
+        <StatisticLine text={props.text1} number={props.number1} />
+        <StatisticLine text={props.text2} number={props.number2} />
+        <StatisticLine text={props.text3} number={props.number3} />
+        <StatisticLine text={props.text4} number={props.number4} />
+        <StatisticLine text={props.text5} number={props.number5} />
+        <StatisticLine text={props.text6} number={props.number6} />
       </div>
     )
   }
