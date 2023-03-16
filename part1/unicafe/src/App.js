@@ -19,9 +19,10 @@ const Title = (props) =>{
 const StatisticLine = (props) =>{
   console.log(props)
   return(
-    <div>
-      <p>{props.text} {props.number}</p>
-    </div>
+    <tr>
+        <td>{props.text}</td>
+        <td>{props.number}</td>
+    </tr>
   )
 }
 
@@ -30,12 +31,18 @@ const Stats = (props) =>{
   if (props.number1 > 0 || props.number2 > 0 || props.number3 > 0) {
     return(
       <div>
-        <StatisticLine text={props.text1} number={props.number1} />
-        <StatisticLine text={props.text2} number={props.number2} />
-        <StatisticLine text={props.text3} number={props.number3} />
-        <StatisticLine text={props.text4} number={props.number4} />
-        <StatisticLine text={props.text5} number={props.number5} />
-        <StatisticLine text={props.text6} number={props.number6} />
+        <table>
+        <thead></thead>
+          <tbody>
+            <StatisticLine text={props.text1} number={props.number1} />
+            <StatisticLine text={props.text2} number={props.number2} />
+            <StatisticLine text={props.text3} number={props.number3} />
+            <StatisticLine text={props.text4} number={props.number4} />
+            <StatisticLine text={props.text5} number={props.number5} />
+            <StatisticLine text={props.text6} number={props.number6} />
+          </tbody>
+          <tfoot></tfoot>
+        </table>
       </div>
     )
   }
@@ -45,7 +52,6 @@ const Stats = (props) =>{
     </div>    
   )
 }
-
 
 
 const App = () => {
