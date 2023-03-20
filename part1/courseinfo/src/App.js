@@ -33,51 +33,75 @@ const Total = (props) => {
   },0)
   console.log('total:', totalEx)
   return(
-    <p>Total {totalEx}</p>
+    <p><b>Total of {totalEx} exercises</b></p>
   )
 }
 
 const Course = (props) => {
   console.log('course_props', props)
   console.log('course_props_name', props.course.name)
-    return(
-      <div>
-        <Header title={props.course.name} />
-        <Content content={props.course.parts} />
-        <Total parts={props.course.parts} />
+  return(
+    <div>
+      {props.course.map(eachCourse => {
+        return(
+          <div>  
+          <Header title={eachCourse.name} />
+          <Content content={eachCourse.parts} />
+          <Total parts={eachCourse.parts} />
+          </div>
+        )}
+      )}
       </div>
-    )
+  )
 }
 
 const App = () => {
-  const course = {
-    id: 1,
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10,
-        id: 1
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7,
-        id: 2
-      },
-      {
-        name: 'State of a component',
-        exercises: 14,
-        id: 3
-      },
-      {
-        name: 'Testing for additional content',
-        exercises: 213,
-        id:4
-      }
-    ]
-  }
+  const courses = [
+    {
+      name: 'Half Stack application development',
+      id: 1,
+      parts: [
+        {
+          name: 'Fundamentals of React',
+          exercises: 10,
+          id: 1
+        },
+        {
+          name: 'Using props to pass data',
+          exercises: 7,
+          id: 2
+        },
+        {
+          name: 'State of a component',
+          exercises: 14,
+          id: 3
+        },
+        {
+          name: 'Redux',
+          exercises: 11,
+          id: 4
+        }
+      ]
+    }, 
+    {
+      name: 'Node.js',
+      id: 2,
+      parts: [
+        {
+          name: 'Routing',
+          exercises: 3,
+          id: 1
+        },
+        {
+          name: 'Middlewares',
+          exercises: 7,
+          id: 2
+        }
+      ]
+    }
+  ]
 
-  return <Course course={course} />
+  return <Course course={courses} />
 }
 
 export default App
