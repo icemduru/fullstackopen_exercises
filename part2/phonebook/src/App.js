@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 const NumberPrint = (props) => {
+  console.log("NumberPring props",props)
   return(
     <div>
       {props.numbers.map(eachNumber =>
@@ -26,9 +27,16 @@ const App = () => {
     const noteObject = {
       name: newName
     }
-  
-    setPersons(persons.concat(noteObject))
-    setNewName('')
+
+    const duplicated = persons.filter(person => person.name === noteObject.name)
+    console.log("duplicated",duplicated)
+
+    if (duplicated.length) {
+      alert(`${newName} is already added to phonebook`)
+    } else{
+      setPersons(persons.concat(noteObject))
+      setNewName('')
+    }
   }
 
   return (
