@@ -5,7 +5,7 @@ const NumberPrint = (props) => {
   return(
     <div>
       {props.numbers.map(eachNumber =>
-        <p key={eachNumber.name}>{eachNumber.name}</p>
+        <p key={eachNumber.name}>{eachNumber.name} {eachNumber.number}</p>
       )}
     </div>
   )
@@ -13,19 +13,26 @@ const NumberPrint = (props) => {
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    { name: 'Arto Hellas', number: 234 }
   ]) 
   const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState('')
+
 
   const handleNameChange = (event) => {
     //console.log(event.target.value)
     setNewName(event.target.value)
   }
+  const handleNameNumber = (event) => {
+    //console.log(event.target.value)
+    setNewNumber(event.target.value)
+  }
 
   const addPerson = (event) => {
     event.preventDefault()
     const noteObject = {
-      name: newName
+      name: newName,
+      number: newNumber
     }
 
     const duplicated = persons.filter(person => person.name === noteObject.name)
@@ -36,6 +43,7 @@ const App = () => {
     } else{
       setPersons(persons.concat(noteObject))
       setNewName('')
+      setNewNumber('')
     }
   }
 
@@ -45,6 +53,8 @@ const App = () => {
       <form onSubmit={addPerson}>
         <div>
           name: <input value={newName} onChange={handleNameChange} />
+          <br></br>
+          number: <input value={newNumber} onChange={handleNameNumber} />
         </div>
         <div>
           <button type="submit">add</button>
