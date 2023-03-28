@@ -1,15 +1,7 @@
 import { useState } from 'react'
-
-const NumberPrint = (props) => {
-  console.log("NumberPring props",props)
-  return(
-    <div>
-      {props.numbers.map(eachNumber =>
-        <p key={eachNumber.name}>{eachNumber.name} {eachNumber.number}</p>
-      )}
-    </div>
-  )
-}
+import Persons from './components/Persons'
+import Filter from './components/Filter'
+import PersonForm from './components/PersonForm'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -70,24 +62,13 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <form>
-        <div>
-          filter shown with <input value={newSearch} onChange={handleSearch} />
-        </div>
-      </form>
+      <Filter value={newSearch} onChange={handleSearch}/>
       <h2> add a new</h2>
-      <form onSubmit={addPerson}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange} />
-          <br></br>
-          number: <input value={newNumber} onChange={handleNameNumber} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <PersonForm onSubmit={addPerson} valueName={newName} 
+      valueNumber={newNumber} nameOnChange={handleNameChange}
+      numberOnchange={handleNameNumber}/>
       <h2>Numbers</h2>
-      <NumberPrint numbers={toShow()} />
+      <Persons numbers={toShow()} />
     </div>
   )
 }
