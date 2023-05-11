@@ -1,11 +1,13 @@
 const Persons = (props) => {
     console.log("NumberPring props",props)
     return(
-      <div>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
         {props.numbers.map(eachNumber =>
-          <p key={eachNumber.name}>{eachNumber.name} {eachNumber.number}</p>
+          <li key={eachNumber.name}>{eachNumber.name} {eachNumber.number}
+          <button onClick={() => props.button(eachNumber.name)}>Delete</button>
+          </li>
         )}
-      </div>
+      </ul>
     )
   }
 
