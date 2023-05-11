@@ -103,11 +103,19 @@ const deletePerson = (name) =>{
   if (window.confirm(`Do you really want to delete ${name}?`)) { 
     PersonService
     .deletion(idToDelete)
+    .then(() => {
     const toDelUpdate = persons.filter(person => person.name !== name)
     setPersons(toDelUpdate)
     setNotifStyle({color: '#7c3d00', fontSize: 20, border: '5px solid black' , padding: 10, background: '#ffffc8', marginBottom: 10})
     setErrorMessage(`${name} is deleted from phonebook`)
     setTimeout(() => {setErrorMessage(null)}, 5000)
+  })
+  .catch(error => {
+    setNotifStyle({color: 'red', fontSize: 20, border: '5px solid red' , padding: 10, background: '#ffffc8', marginBottom: 10})
+    setErrorMessage(`${name} was already removed from server`)
+    setTimeout(() => {setErrorMessage(null)}, 5000)
+    console.log(error)
+  })  
   }
 }
 
