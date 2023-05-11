@@ -4,12 +4,15 @@ import Persons from './components/Persons'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import PersonService from './services/persons'
+import Notification from './components/Notification'
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newSearch, setnewSearch] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [notifStyle, setNotifStyle] = useState({color: 'green',fontStyle: 'italic', fontSize: 16})
 
   useEffect(() => {
     console.log('effect')
@@ -38,20 +41,25 @@ const App = () => {
 
     const duplicated = persons.filter(person => person.name === noteObject.name)
     console.log("duplicated",duplicated)
-    const dupIndex = duplicated[0].id
-    console.log(dupIndex)
+
 
     if (duplicated.length) {
+      const dupIndex = duplicated[0].id
+      console.log(dupIndex)
       if (window.confirm(`${duplicated[0].name} is already added to phonebook. Do you really want to update ${duplicated[0].name}?`)) {
         PersonService
         .update(dupIndex,noteObject)
-        .then(returnedPerson => {
+        .then(updatedPerson => {
           const toUpdate = [...persons]
           console.log(toUpdate[dupIndex-1])
           toUpdate[dupIndex-1].number = noteObject.number
           setPersons(toUpdate)
           setNewName('')
           setNewNumber('')
+          setNotifStyle({color: 'green', fontSize: 20, border: '5px solid purple' , padding: 10, background: 'lightgrey', marginBottom: 10})
+          setErrorMessage(`${duplicated[0].name} is updated`)
+          setTimeout(() => {setErrorMessage(null)}, 5000)
+          console.log('updatedPerson:',updatedPerson)
         })
       }
 
@@ -62,6 +70,9 @@ const App = () => {
         setPersons(persons.concat(returnedPerson))
         setNewName('')
         setNewNumber('')
+        setNotifStyle({color: 'blue', fontSize: 20, border: '5px solid green' , padding: 10, background: 'lightgrey', marginBottom: 10})
+        setErrorMessage(`${returnedPerson.name} is added to phonebook`)
+        setTimeout(() => {setErrorMessage(null)}, 5000)
       })
     }
   }
@@ -94,12 +105,16 @@ const deletePerson = (name) =>{
     .deletion(idToDelete)
     const toDelUpdate = persons.filter(person => person.name !== name)
     setPersons(toDelUpdate)
+    setNotifStyle({color: '#7c3d00', fontSize: 20, border: '5px solid black' , padding: 10, background: '#ffffc8', marginBottom: 10})
+    setErrorMessage(`${name} is deleted from phonebook`)
+    setTimeout(() => {setErrorMessage(null)}, 5000)
   }
 }
 
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={errorMessage} notifStyle={notifStyle}/>
       <Filter value={newSearch} onChange={handleSearch}/>
       <h2> add a new</h2>
       <PersonForm onSubmit={addPerson} valueName={newName} 
