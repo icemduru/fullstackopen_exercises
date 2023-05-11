@@ -38,9 +38,23 @@ const App = () => {
 
     const duplicated = persons.filter(person => person.name === noteObject.name)
     console.log("duplicated",duplicated)
+    const dupIndex = duplicated[0].id
+    console.log(dupIndex)
 
     if (duplicated.length) {
-      alert(`${newName} is already added to phonebook`)
+      if (window.confirm(`${duplicated[0].name} is already added to phonebook. Do you really want to update ${duplicated[0].name}?`)) {
+        PersonService
+        .update(dupIndex,noteObject)
+        .then(returnedPerson => {
+          const toUpdate = [...persons]
+          console.log(toUpdate[dupIndex-1])
+          toUpdate[dupIndex-1].number = noteObject.number
+          setPersons(toUpdate)
+          setNewName('')
+          setNewNumber('')
+        })
+      }
+
     } else{
       PersonService
       .create(noteObject)
