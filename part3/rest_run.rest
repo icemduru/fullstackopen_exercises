@@ -1,11 +1,34 @@
 GET http://localhost:3001/api/persons/
 
 ###
-
 POST http://localhost:3001/api/persons/
 content-type: application/json
 
 {
-    "name": "Artaa Hennas",
+    "name": "Arrrto Hellas",
     "number": "0423-14223456"
+}
+###
+POST http://localhost:3001/api/persons/
+content-type: application/json
+
+{
+    "name": "Arto Hellas",
+    "number": "0423-14223456"
+}
+###
+POST http://localhost:3001/api/persons/
+content-type: application/json
+
+{
+    "name": "",
+    "number": "0423-14223456"
+}
+###
+POST http://localhost:3001/api/persons/
+content-type: application/json
+
+{
+    "name": "sdasda",
+    "number": ""
 }

@@ -59,11 +59,35 @@ app.delete('/api/persons/:id', (request, response) => {
     response.status(204).end()
 })
 
+const generateId = () => {
+    const randomID = Math.floor(Math.random() * 3454000000)
+    return randomID
+  }
+  
 app.post('/api/persons', (request, response) => {
-    const person = request.body
-    console.log(person)
-    response.json(person)
-})
+    const body = request.body
+  
+    if (!body.name || !body.number) {
+      return response.status(400).json({ 
+        error: 'name or number missing' 
+      })
+    }
+    else if (persons.find(person => person.name === body.name)) {
+        return response.status(400).json({ 
+            error: 'name must be unique' 
+          })
+    }
+  
+    const person = {
+      name: body.name,
+      number: body.number,
+      id: generateId(),
+    }
+  
+    persons = persons.concat(person)
+  
+    response.json(persons)
+  })
 
 const PORT = 3001
 app.listen(PORT, () => {
