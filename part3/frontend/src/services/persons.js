@@ -1,6 +1,6 @@
 import axios from 'axios'
 //const baseUrl = 'https://pbookcem.fly.dev/api/persons'
-const baseUrl = 'http://localhost:3001/api/persons'
+const baseUrl = '/api/persons'
 
 
 const getAll = () => {

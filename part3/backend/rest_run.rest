@@ -48,3 +48,5 @@ content-type: application/json
     "name": "Ar23to Hellas",
     "number": "0423-14223456"
 }
+###
+GET https://pbookcem.fly.dev/api/persons
