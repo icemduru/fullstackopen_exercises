@@ -10,6 +10,14 @@ content-type: application/json
     "number": "0423-14223456"
 }
 ###
+PUT http://localhost:3001/api/persons/6479be5e5b45f404184b560e
+content-type: application/json
+
+{
+    "name": "Arrgrrto Hellas",
+    "number": "1230423-14223456"
+}
+###
 POST http://localhost:3001/api/persons/
 content-type: application/json
 
@@ -52,6 +60,6 @@ content-type: application/json
 ###
 GET https://pbookcem.fly.dev/api/persons
 ###
-DELETE http://localhost:3001/api/persons/6479beeb86cbcfdbbc0815a7
+DELETE http://localhost:3001/api/persons/6479cdfc58d42047360c67bb
 ###
 DELETE https://pbookcem.fly.dev/api/persons/6479ca3fb47cd850f93bba06

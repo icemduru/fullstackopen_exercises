@@ -50,10 +50,11 @@ const App = () => {
         PersonService
         .update(dupIndex,noteObject)
         .then(updatedPerson => {
-          const toUpdate = [...persons]
-          console.log(toUpdate[dupIndex-1])
-          toUpdate[dupIndex-1].number = noteObject.number
-          setPersons(toUpdate)
+          PersonService
+          .getAll()
+          .then(initialPersons => {
+            setPersons(initialPersons)
+          })
           setNewName('')
           setNewNumber('')
           setNotifStyle({color: 'green', fontSize: 20, border: '5px solid purple' , padding: 10, background: 'lightgrey', marginBottom: 10})
