@@ -1,12 +1,12 @@
 GET http://localhost:3001/api/persons/
 ###
-GET http://localhost:3001/api/persons/64772c7b0a0dd234838dba5a3bb
+GET http://localhost:3001/api/persons/64772c7b0a0dd838dba5a3bb
 ###
 POST http://localhost:3001/api/persons/
 content-type: application/json
 
 {
-    "name": "Arrrrto Hellas",
+    "name": "Arrgrrto Hellas",
     "number": "0423-14223456"
 }
 ###
@@ -51,3 +51,7 @@ content-type: application/json
 }
 ###
 GET https://pbookcem.fly.dev/api/persons
+###
+DELETE http://localhost:3001/api/persons/6479beeb86cbcfdbbc0815a7
+###
+DELETE https://pbookcem.fly.dev/api/persons/6479ca3fb47cd850f93bba06
