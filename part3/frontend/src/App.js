@@ -75,6 +75,11 @@ const App = () => {
         setErrorMessage(`${returnedPerson.name} is added to phonebook`)
         setTimeout(() => {setErrorMessage(null)}, 5000)
       })
+      .catch(error => {
+        setNotifStyle({color: 'blue', fontSize: 20, border: '5px solid red' , padding: 10, background: 'lightgrey', marginBottom: 10})
+        setErrorMessage(error.response.data.error)
+        setTimeout(() => {setErrorMessage(null)}, 5000)
+        console.log(error.response.data.error)})
     }
   }
 
