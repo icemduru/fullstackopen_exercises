@@ -28,38 +28,17 @@ app.use(express.static('build'))
 morgan.token('custom', function (req, res) { return JSON.stringify(req.body) })
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :custom'))
 
-let persons = [
-    { 
-      "id": 1,
-      "name": "Arto Hellas", 
-      "number": "040-123456"
-    },
-    { 
-      "id": 2,
-      "name": "Ada Lovelace", 
-      "number": "39-44-5323523"
-    },
-    { 
-      "id": 3,
-      "name": "Dan Abramov", 
-      "number": "12-43-234345"
-    },
-    { 
-      "id": 4,
-      "name": "Mary Poppendieck", 
-      "number": "39-23-6423122"
-    }
-]
-
 app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
 })
 
 app.get('/info', (request, response) => {
-    total_len = persons.length
-    const date = new Date()
-    response.send(`<p>Phonebook has info for ${total_len} people</p><br/>` + date)
-  })
+    Person.find({}).then(persons => {
+      total_len = persons.length
+      const date = new Date()
+      response.send(`<p>Phonebook has info for ${total_len} people</p><br/>` + date)
+    })
+})
 
 app.get('/api/persons', (request, response) => {
   Person.find({}).then(persons => {
