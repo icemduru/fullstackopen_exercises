@@ -6,28 +6,29 @@ const url = process.env.MONGODB_URI
 mongoose.connect(url)
   .then(result => {
     console.log('connected to MongoDB')
+    //console.log('result', result)
   })
   .catch((error) => {
     console.log('error connecting to MongoDB:', error.message)
   })
 
 const personSchema = new mongoose.Schema({
-    name: {
-      type: String,
-      minLength: 3,
-      required: true
-    },
-    number: {
-      type: String,
-      minLength: 8,
-      validate: {
-        validator: function(v) {
-          return /^\d{2,3}-\d{5,}$/.test(v);
-        },
-        message: props => `${props.value} is not a valid phone number! Phone number is formed of two parts that are separated by -, the first part has two or three numbers and the second part also consists of numbers`
+  name: {
+    type: String,
+    minLength: 3,
+    required: true
+  },
+  number: {
+    type: String,
+    minLength: 8,
+    validate: {
+      validator: function(v) {
+        return /^\d{2,3}-\d{5,}$/.test(v)
       },
-      required: true
+      message: props => `${props.value} is not a valid phone number! Phone number is formed of two parts that are separated by -, the first part has two or three numbers and the second part also consists of numbers`
     },
+    required: true
+  },
 })
 
 personSchema.set('toJSON', {
