@@ -19,7 +19,13 @@ const personSchema = new mongoose.Schema({
     },
     number: {
       type: String,
-      minLength: 3,
+      minLength: 8,
+      validate: {
+        validator: function(v) {
+          return /^\d{2,3}-\d{5,}$/.test(v);
+        },
+        message: props => `${props.value} is not a valid phone number! Phone number is formed of two parts that are separated by -, the first part has two or three numbers and the second part also consists of numbers`
+      },
       required: true
     },
 })

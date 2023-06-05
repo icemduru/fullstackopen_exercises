@@ -62,6 +62,11 @@ const App = () => {
           setTimeout(() => {setErrorMessage(null)}, 5000)
           console.log('updatedPerson:',updatedPerson)
         })
+        .catch(error => {
+          setNotifStyle({color: 'blue', fontSize: 20, border: '5px solid red' , padding: 10, background: 'lightgrey', marginBottom: 10})
+          setErrorMessage(error.response.data.error)
+          setTimeout(() => {setErrorMessage(null)}, 5000)
+          console.log(error.response.data.error)})
       }
 
     } else{
