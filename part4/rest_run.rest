@@ -4,9 +4,15 @@ POST http://localhost:3001/api/blogs/
 content-type: application/json
 
 {
-    "title": "Test Title2",
-    "author": "Tester Author2",
+    "title": "Test Title3",
+    "author": "Tester Author3",
     "url": "http://www.test.com",
-    "likes": 423
+    "likes": 43323
     
 }
+###
+DELETE http://localhost:3001/api/blogs/64806f5cb61a17aaa7f49efa
+###
+GET http://localhost:3001/api/blogs/348062e456ead59d6e7c4fe4
+###
+GET http://localhost:3001/api/blogs/648062e456ead59d6e7c4fe4
