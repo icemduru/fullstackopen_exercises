@@ -7,21 +7,11 @@ const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 const Blog = require('./models/blog')
+const notesRouter = require('./controllers/blogs')
+const middleware = require('./utils/middleware')
 
-const errorHandler = (error, request, response, next) => {
-  console.error(error.message)
 
-  if (error.name === 'CastError') {
-    return response.status(400).send({ error: 'malformatted id' })
-  } else if (error.name === 'ValidationError') {
-    return response.status(400).json({ error: error.message })
-  }
-  next(error)
-}
-
-const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: 'unknown endpoint' })
-}
+//app.use('/api/blogs', notesRouter)
 
 app.use(cors())
 app.use(express.json())
@@ -54,8 +44,8 @@ app.post('/api/blogs', (request, response, next) => {
     .catch(error => next(error))
 })
 
-app.use(unknownEndpoint)
-app.use(errorHandler)
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
 
 app.listen(config.PORT, () => {
   logger.info(`Server running on port ${config.PORT}`)
