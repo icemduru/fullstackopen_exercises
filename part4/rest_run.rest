@@ -4,14 +4,14 @@ POST http://localhost:3001/api/blogs/
 content-type: application/json
 
 {
-    "title": "Test Title3",
-    "author": "Tester Author3",
+    "title": "Test Title3323",
+    "author": "Tester Author3223",
     "url": "http://www.test.com",
-    "likes": 43323
+    "likes": 43233323
     
 }
 ###
-DELETE http://localhost:3001/api/blogs/64806f5cb61a17aaa7f49efa
+DELETE http://localhost:3001/api/blogs/1248073bd501bf1ff81c95cd2
 ###
 GET http://localhost:3001/api/blogs/348062e456ead59d6e7c4fe4
 ###
