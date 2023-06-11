@@ -23,3 +23,14 @@ DELETE http://localhost:3001/api/blogs/648586acedd381b35d5bf45c
 GET http://localhost:3001/api/blogs/648062e456ead59d6e7c4fe4
 ###
 GET http://localhost:3001/api/blogs/648062e456ead59d6e7c4fe4
+###
+PUT http://localhost:3001/api/blogs/64805ad450e58270431fd83c 
+content-type: application/json
+
+{
+    "title": "Test to change",
+    "author": "Tester changer",
+    "url": "http://www.changeeeeeewefkwe.com",
+    "likes": 232
+    
+}
