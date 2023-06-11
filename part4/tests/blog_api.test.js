@@ -121,6 +121,39 @@ test('unique identifier property of the blog posts is named id', async () => {
   expect(blogToView._id).not.toBeDefined();
 });
 
+test('add blog without like data and expect zero like', async () => {
+  const newBlog = {
+    title: 'No likes',
+    author: 'Not likable',
+    url: 'http://likeshouldbezero.zeroo',
+  };
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/);
+
+  const blogsAtEnd = await helper.blogsInDb();
+  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1);
+
+  const blogToexpectZeroLike = blogsAtEnd[blogsAtEnd.length - 1];
+  // console.log(blogToexpectZeroLike);
+  expect(blogToexpectZeroLike.likes).toEqual(0);
+});
+
+test('add blog without url and expect bad request', async () => {
+  const newBlog = {
+    title: 'No url',
+    author: 'url missing',
+  };
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(400);
+});
+
 afterAll(async () => {
   await mongoose.connection.close();
 });
